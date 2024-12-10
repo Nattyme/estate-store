@@ -26,6 +26,8 @@ export default async function (state) {
     state.filter.query = view.getInput();
     await state.filter.getResults();
 
+    state.results = state.filter.result;
+
     // update text in button
     view.changeButtonText(state.filter.result.length);
   });
