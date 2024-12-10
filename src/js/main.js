@@ -3,9 +3,13 @@ import singleItem from './pages/singleItemPage';
 import favouritesPage from './pages/favouritesPage';
 import bidsPage from './pages/bidsPage';
 import errorPage from './pages/errorPage';
+import EventEmitter from './utils/EventEmitter';
 
 // State
-const state = {};
+const state = {
+  results: [],
+  emitter: new EventEmitter()
+};
 
 // For testing
 window.state = state;

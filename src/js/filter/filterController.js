@@ -42,6 +42,7 @@ export default async function (state) {
   form.addEventListener('submit', function (e) {
     e.preventDefault(e);
     console.log('submit');
+    state.emitter.emit('event:render-listing', {} );
   });
 
   // const inputs = form.querySelectorAll('.range__input');
