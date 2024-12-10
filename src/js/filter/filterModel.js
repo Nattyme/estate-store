@@ -1,5 +1,7 @@
 export default class Filter {
-  constructor () {}
+  constructor () {
+    this.query = '';
+  }
 
   async getParams() {
     try {
@@ -15,11 +17,11 @@ export default class Filter {
 
   async getResults() {
     try {
-      const queryString = 'https://jsproject.webcademy.ru/items';
+      const queryString =`https://jsproject.webcademy.ru/items${this.query}`;
       const response = await fetch(queryString);
       const data = await response.json();
       this.result = await data;
-
+      console.log( this.result);
     } catch {
       alert(error);
     }

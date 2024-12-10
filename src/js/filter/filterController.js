@@ -17,19 +17,36 @@ export default async function (state) {
   // Update button counter
   view.changeButtonText(state.filter.result.length);
 
-  // Form events listener
+  // Find form element
   const form = document.querySelector('#filter-form');
-  const inputs = form.querySelectorAll('.range__input');
 
-  form.addEventListener('change', function (e) {
+  // Form change listening
+  form.addEventListener('change', async function (e) {
     e.preventDefault();
     state.filter.query = view.getInput();
-    console.log( state.filter.query);
-    
+    await state.filter.getResults();
+
+    // update text in button
+    view.changeButtonText(state.filter.result.length);
   });
 
-  inputs.forEach( (input) => {
-    input.addEventListener('keyup', function () {
-    });
+  // Form reset listening
+  form.addEventListener('reset', async function () {
+    state.filter.query = '';
+    await state.filter.getResults();
+
+    view.changeButtonText(state.filter.result.length);
   });
+
+  //Form submit listening
+  form.addEventListener('submit', function (e) {
+    e.preventDefault(e);
+    console.log('submit');
+  });
+
+  // const inputs = form.querySelectorAll('.range__input');
+  // inputs.forEach( (input) => {
+  //   input.addEventListener('keyup', function () {
+  //   });
+  // });
 }

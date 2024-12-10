@@ -3,7 +3,8 @@ import 'url-search-params-polyfill';
 const elements = {
   filterSelect: document.getElementsByClassName('filter__dropdown'),  // getElementsByClassName - to get element after render
   filterRooms: document.getElementsByClassName('rooms__checkbox'),
-  filterFields: document.getElementsByClassName('range__input')
+  filterFields: document.getElementsByClassName('range__input'),
+  filterButtons: document.getElementsByClassName('filter__show')
 }
 
 export function render (params) {
@@ -99,16 +100,30 @@ export function render (params) {
       </div>
       <div class="filter__buttons">
           <button class="filter__show">Показать объекты</button>
-          <button class="filter__reset">Сбросить фильтр</button>
+          <button type="reset" class="filter__reset">Сбросить фильтр</button>
       </div>
     </form>
   `;
 
-  document.querySelector('#app').insertAdjacentHTML('afterbegin', markup)
+  document.querySelector('#app').insertAdjacentHTML('afterbegin', markup);
 }
 
-export function changeButtonText(number){
-  document.querySelectorAll('.filter__show')[0].innerText=`Показать ${number} объектов`;
+export function changeButtonText(number) {
+  const buttonSubmit =  elements.filterButtons[0];
+
+  let message;
+
+  if (number > 0) {
+    message = `Показать ${number} объектов`;
+  } else {
+    message = 'Объекты не найдены. Измените условия поиска.';
+  }
+
+  buttonSubmit.innerText = message;
+
+
+  // Disable btn if result is empty
+  buttonSubmit.disabled = number === 0 ? true : false;
 }
 
 export function getInput () {
@@ -131,13 +146,12 @@ export function getInput () {
   });
 
   const roomsValuesString = roomsValues.join(',');
-  
+
   if (roomsValuesString.trim() !== '') {
     searchParams.append('rooms', roomsValuesString);
   }
 
   // 3. Get inputs params (square and price)
-  console.log(elements.filterFields);
   Array.from(elements.filterFields).forEach((input) => {
     if (input.value.trim() !== '') {
       searchParams.append(input.name, input.value);
@@ -147,5 +161,4 @@ export function getInput () {
   // current params
   const queryString = searchParams.toString();
   return queryString ? '?' + queryString : '';
-
 }
