@@ -11,8 +11,24 @@ export default function (state) {
   });
 
   state.emitter.subscribe('event:render-listing', ()=>{
-    console.log(state.results);
-    
+    // Clear cords container
+    view.clearListingContainer();
+
+    // Cards render
+    state.results.forEach( (item) => {
+      view.renderCard(item);
+    });
+  });
+
+  state.emitter.subscribe('event:reset-listing', ()=> {
+    // Clear cords container
+    view.clearListingContainer();
+
+    // Cards render
+    state.results.forEach( (item) => {
+      view.renderCard(item);
+    });
+
   });
   
 }

@@ -21,8 +21,9 @@ export default async function (state) {
   // Find form element
   const form = document.querySelector('#filter-form');
 
-  // Form change listening
-  form.addEventListener('change', async function (e) {
+
+
+  const filterChanged = async function (e) {
     e.preventDefault();
     state.filter.query = view.getInput();
     await state.filter.getResults();
@@ -31,26 +32,45 @@ export default async function (state) {
 
     // update text in button
     view.changeButtonText(state.filter.result.length);
-  });
+  }
 
-  // Form reset listening
-  form.addEventListener('reset', async function () {
+  const filterReset = async function () {
     state.filter.query = '';
+
     await state.filter.getResults();
+    state.results = state.filter.result; // update state.results
 
-    view.changeButtonText(state.filter.result.length);
-  });
+    view.changeButtonText(state.filter.result.length); 
+    
+    state.emitter.emit('event:reset-listing', {} ); // emit to update cards render
+  }
 
-  //Form submit listening
-  form.addEventListener('submit', function (e) {
+  const filterSubmit = function (e) {
     e.preventDefault(e);
-    console.log('submit');
     state.emitter.emit('event:render-listing', {} );
-  });
+  }
 
-  // const inputs = form.querySelectorAll('.range__input');
-  // inputs.forEach( (input) => {
-  //   input.addEventListener('keyup', function () {
-  //   });
-  // });
+  const initEventListeners = function () {
+
+    // Filter change listening
+    form.addEventListener('change', (e) => filterChanged(e));
+
+    // Filter reset listening
+    form.addEventListener('reset', (e) => filterReset(e));
+
+    // Filter submit listening
+    form.addEventListener('submit', (e) => filterSubmit(e));
+
+     // Filter input change listening
+    // const inputs = form.querySelectorAll('.range__input');
+    // inputs.forEach( (input) => {
+    //   input.addEventListener('keyup', (e) => filterChanged(e));
+    //   state.emitter.emit('event:render-listing', {} );
+    // });
+  }
+
+
+
+  // Start listening events
+  initEventListeners();
 }
