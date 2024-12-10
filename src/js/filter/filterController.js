@@ -13,4 +13,7 @@ export default async function (state) {
 
   // Request to server
   await state.filter.getResults();
+
+  // Update button counter
+  view.changeButtonText(state.filter.result.length);
 }

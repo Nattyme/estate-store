@@ -90,11 +90,15 @@ export function render (params) {
           </div>
       </div>
       <div class="filter__buttons">
-          <button class="filter__show">Показать 119 объектов</button>
+          <button class="filter__show">Показать объекты</button>
           <button class="filter__reset">Сбросить фильтр</button>
       </div>
     </form>
   `;
 
   document.querySelector('#app').insertAdjacentHTML('afterbegin', markup)
+}
+
+export function changeButtonText(number){
+  document.querySelectorAll('.filter__show')[0].innerText=`Показать ${number} объектов`;
 }
