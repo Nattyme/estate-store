@@ -4,6 +4,11 @@ import favouritesPage from './pages/favouritesPage';
 import bidsPage from './pages/bidsPage';
 import errorPage from './pages/errorPage';
 
+// State
+const state = {};
+
+// For testing
+window.state = state;
 
 // Routes
 const routes = [
@@ -32,7 +37,7 @@ const router = function () {
   // Current matching Component from router or error page
   const { component = errorPage } = findComponentByPath(currentPath, routes) || {};
 
-  component();
+  component(state);
 }
 
 window.addEventListener('hashchange', router);

@@ -1,8 +1,6 @@
 import filter from './../filter/filterController';
 
-export default function () {
-  document.querySelector('#app').innerHTML = markup;
-
-  filter();
+export default function (state) {
+  filter(state);
 }
 
