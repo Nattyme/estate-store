@@ -10,4 +10,7 @@ export default async function (state) {
 
   // Render filter
   view.render(state.filter.params);
+
+  // Request to server
+  await state.filter.getResults();
 }

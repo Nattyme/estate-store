@@ -1,6 +1,4 @@
 export function render (params) {
-  console.log(params);
-
   let complexNames = '';
   params.complexNames.forEach((name) => {
     complexNames += `<option value="${name}">ЖК ${name}</option>`;
