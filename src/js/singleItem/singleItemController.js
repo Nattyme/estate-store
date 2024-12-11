@@ -2,32 +2,36 @@ import SingleItem from './singleItemModel';
 import * as view from './singleItemView';
 
 export default async function (state) {
-  console.log('single item contoller start');
-  
   state.singleItem = new SingleItem(state.routeParams);
   await state.singleItem.getItem();
 
   // Render single card 
   view.render(state.singleItem.result);
 
+ 
   /* **********
-  * Start event listen
+  * Start event listeners
   ************ */
+  const elements = {
+    form: document.querySelector('.modal__form'),
+    buttonOpen: document.querySelector('.button-order'),
+    buttonClose: document.querySelector('.modal__close'),
+    modalWrapper: document.querySelector('.modal-wrapper')
+  }
 
   // Open modal
-  document.querySelector('.button-order').addEventListener('click', ()=>{
-    view.showModal();    
-  });
+  elements.buttonOpen.addEventListener('click', ()=> view.showModal());
 
-  // Close modal if 'buttons-close' is clicked
-  document.querySelector('.modal__close').addEventListener('click', ()=>{
-    view.hideModal();    
-  });
-
-  // Clode mode if overlay is clicked
-  document.querySelector('.modal-wrapper').addEventListener('click', (e)=>{
-    if ( !e.target.closest('.modal')) {
+  // Click at overlay or buttons-close - close modal
+  elements.modalWrapper.addEventListener('click', (e)=>{
+    if ( !e.target.closest('.modal') || e.target === elements.buttonClose) {
       view.hideModal();    
     };
+  });
+
+  elements.form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const formData = view.getInput();  // returns form values obj
+    await state.singleItem.submitForm(formData);
   });
 }

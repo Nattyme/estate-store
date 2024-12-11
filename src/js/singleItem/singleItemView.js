@@ -169,3 +169,19 @@ export function showModal () {
 export function hideModal () {
   document.querySelector('.modal-wrapper').classList.add('none')
 }
+
+// Collect form data and returns it as an object
+export function getInput() {
+  const formData = {};
+
+  // Form elems
+  const elements = {
+    name: document.querySelector('#form-name'),
+    phone: document.querySelector('#form-phone')
+  }
+
+  formData.name = elements.name.value;
+  formData.phone = elements.phone.value;
+
+  return formData;
+}
