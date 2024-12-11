@@ -56,7 +56,7 @@ export default async function (state) {
     // Add or remove form favs
     if(e.target === elements.buttonFav) {
       console.log('clicked FAV');  
-      state.favourites.addFav(state.singleItem.id);
+      state.favourites.toggleFav(state.singleItem.id);
     }
   
   });
