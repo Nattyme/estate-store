@@ -1,4 +1,9 @@
+import singleItem from './../singleItem/singleItemController';
+
 export default function () {
-  const markup = `<div class="container"><h1>Home single item</h1></div>`;
-  document.querySelector('#app').innerHTML = markup;
+  // Clear app container
+  document.querySelector('#app').innerHTML = '';
+
+  // Start Single item component
+  singleItem();
 }

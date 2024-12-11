@@ -109,7 +109,7 @@ export function render (params) {
 }
 
 export function changeButtonText(number) {
-  const buttonSubmit =  elements.filterButtons[0];
+  const buttonSubmit = elements.filterButtons[0];
 
   let message;
 
