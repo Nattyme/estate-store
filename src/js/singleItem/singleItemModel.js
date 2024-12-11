@@ -13,7 +13,5 @@ export default class SingleItem {
     } catch (error) {
       alert(error);
     }
-  
-
   }
 }
