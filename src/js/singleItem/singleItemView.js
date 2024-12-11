@@ -174,14 +174,26 @@ export function hideModal () {
 export function getInput() {
   const formData = {};
 
-  // Form elems
-  const elements = {
-    name: document.querySelector('#form-name'),
-    phone: document.querySelector('#form-phone')
-  }
+  const elements = getElements();
 
   formData.name = elements.name.value;
   formData.phone = elements.phone.value;
 
   return formData;
+}
+
+export function clearInput () {
+  const elements = getElements();
+
+  elements.name.value = '';
+  elements.phone.value = '';
+}
+
+function getElements() {
+  // Form elems
+ return {
+   name: document.querySelector('#form-name'),
+   phone: document.querySelector('#form-phone')
+ }
+
 }

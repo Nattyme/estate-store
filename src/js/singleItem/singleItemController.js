@@ -33,5 +33,17 @@ export default async function (state) {
     e.preventDefault();
     const formData = view.getInput();  // returns form values obj
     await state.singleItem.submitForm(formData);
+    const response = state.singleItem.response;
+
+    if( response.message === 'Bid Created') {
+      alert('Ваша заявка успешно получена');
+      view.hideModal();
+      view.clearInput();
+    } else if (response.message === 'Bid Not Created') {
+      response.errors.forEach( item => {
+        alert(item);
+      });
+    }
+    
   });
 }
