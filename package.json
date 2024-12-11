@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@babel/polyfill": "^7.8.7",
+    "build": "^0.1.4",
     "es6-promise": "^4.2.8",
     "isomorphic-fetch": "^2.2.1",
     "url-search-params-polyfill": "^8.1.0"
