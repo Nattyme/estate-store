@@ -24,12 +24,8 @@ export function render (object) {
                             </div>
                             <div class="object__desc-art">${object.scu}</div>
 
-                            <button class="button-favourite">
+                            <button id="addToFavouriteBtn" class="button-favourite">
                                 <i class="fas fa-heart"></i> <span>В избранное</span>
-                            </button>
-
-                            <button class="button-favourite button-favourite--active">
-                                <i class="fas fa-heart"></i> <span>В избранном</span>
                             </button>
 
                         </div>
@@ -76,7 +72,7 @@ export function render (object) {
                             </div>
                         </div>
 
-                        <button class="button-order">Забронировать</button>
+                        <button type="submit" class="button-order">Забронировать</button>
                         <!-- <button class="button-preview">Записаться на просмотр</button> -->
                     </div>
                   

@@ -3,4 +3,8 @@ export default class Favourites {
     this.favs = [];
     // Local storage 
   }
+
+  addFav(id) {
+    this.favs.push(id);
+  }
 }

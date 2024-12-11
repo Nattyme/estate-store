@@ -24,7 +24,7 @@ const routes = [
   {path: 'bids', component: bidsPage}
 ];
 
-// find component in routes by route
+// Find component in routes by route
 const findComponentByPath = function (path, routes) {
   return routes.find( function (route) {
     return route.path === path; //  return route we search for
