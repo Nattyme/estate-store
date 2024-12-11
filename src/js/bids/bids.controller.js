@@ -2,9 +2,13 @@ import * as view from './bidsView';
 import Bids from './bidsModel';
 
 export default async function (state) {
-  view.renderContainer();
-
+  
+  // Create a model object to work with bids
   if (!state.bids) state.bids = new Bids();
+
+  // Get bids from the server
   await state.bids.getBids();
-  console.log(state.bids.bids);
+  
+  // Render bids at the page
+  view.renderBids(state.bids.bids);
 }
