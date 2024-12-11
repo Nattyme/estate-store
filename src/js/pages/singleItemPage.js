@@ -1,9 +1,9 @@
 import singleItem from './../singleItem/singleItemController';
 
-export default function () {
+export default function (state) {
   // Clear app container
   document.querySelector('#app').innerHTML = '';
 
   // Start Single item component
-  singleItem();
+  singleItem(state);
 }
