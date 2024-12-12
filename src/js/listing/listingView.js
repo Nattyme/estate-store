@@ -14,7 +14,7 @@ export function renderCard(object, isFav) {
 
   const markup = `<article class="col-md-4">
                             
-                    <a href="#/item/${object.id}" class="card">
+                    <a href="#/item/${object.id}" class="card" data-id="${object.id}">
                         <div class="card__header">
                             <div class="card__title">
                                 ЖК ${object.complex_name}
@@ -71,4 +71,13 @@ export function clearListingContainer () {
   const listingContainer = document.querySelector('#listingContainer');
   listingContainer.innerHTML = '';
 
+}
+
+export function toggleFavIcon (elemenyIcon, isFav) {
+  if (isFav) {
+    elemenyIcon.classList.add('card__like--active');
+  } else {
+    elemenyIcon.classList.remove('card__like--active');
+
+  }
 }
