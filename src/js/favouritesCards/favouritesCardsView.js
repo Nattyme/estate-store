@@ -14,15 +14,15 @@ function renderContainer() {
   document.querySelector('#app').insertAdjacentHTML('afterbegin', markup);
 }
 
-export function renderPage (cards) {
+export function renderPage (cards, priceSet) {
   renderContainer();
 
   cards.forEach(card => {
-    renderCard(card);
+    renderCard(card, priceSet);
   });
 }
 
-function renderCard(object) {
+function renderCard(object, priceSet) {
   const cardsContainer = document.querySelector('#cardsHolder');
 
   const markup = `<article class="col-md-4">
@@ -42,10 +42,10 @@ function renderCard(object) {
                         <div class="card__desc">
                             <div class="card__price">
                                 <div class="card__price-total">
-                                    ${object.price_total} ₽
+                                    ${priceSet(object.price_total)}
                                 </div>
                                 <div class="card__price-per-meter">
-                                    ${object.price_sq_m} ₽/м2
+                                    ${priceSet(object.price_sq_m)} /м2
                                 </div>
                             </div>
 

@@ -1,11 +1,9 @@
-export function render (object, isFav) {
-  console.log(isFav);
-  
+export function render (object, isFav, priceSet) {
   const appContainer = document.querySelector('#app');
   const markup = `
             <div class="container p-0 pt-5">
                 <div class="heading-1">
-                    ${object.title}, ${object.square} м2 за ${object.price_total} ₽
+                    ${object.title}, ${object.square} м2 за ${priceSet(object.price_total)} 
                 </div>
 
                 <div class="object">
@@ -69,12 +67,12 @@ export function render (object, isFav) {
                                 <div
                                     class="details__value details__value--price"
                                 >
-                                   ${object.price_total} ₽
+                                   ${priceSet(object.price_total)}
                                 </div>
                             </div>
                             <div class="details__row">
                                 <div class="details__name">Цена за м2</div>
-                                <div class="details__value">${object.price_sq_m} ₽/м2</div>
+                                <div class="details__value">${priceSet(object.price_sq_m)} /м2</div>
                             </div>
                             <div class="details__row">
                                 <div class="details__name">Площадь</div>

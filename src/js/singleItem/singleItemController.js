@@ -6,7 +6,7 @@ export default async function (state) {
   await state.singleItem.getItem();
 
   // Render single card 
-  view.render(state.singleItem.result, state.favourites.isFav(state.singleItem.id));
+  view.render(state.singleItem.result, state.favourites.isFav(state.singleItem.id), state.settings.priceSet);
 
   /* **********
   * Start event listeners

@@ -9,16 +9,8 @@ export function render () {
   document.querySelector('#app').insertAdjacentHTML('beforeend', markup);
 }
 
-export function renderCard(object, isFav) {
+export function renderCard(object, isFav, priceSet) {
   const listingContainer = document.querySelector('#listingContainer');
-  const priceFormatter = function (number) {
-    return number.toLocaleString('ru-RU', { 
-      style: 'currency', 
-      currency: 'RUB',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0 
-    });
-  }
 
   const markup = `<article class="col-md-4">
                             
@@ -41,11 +33,10 @@ export function renderCard(object, isFav) {
                         <div class="card__desc">
                             <div class="card__price">
                                 <div class="card__price-total">
-                                    ${priceFormatter(Number(object.price_total))}
-                                  
+                                    ${priceSet(object.price_total)}
                                 </div>
                                 <div class="card__price-per-meter">
-                                    ${object.price_sq_m} ₽/м2
+                                    ${priceSet(object.price_sq_m)} /м2
                                 </div>
                             </div>
 

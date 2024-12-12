@@ -25,7 +25,7 @@ export default function (state) {
 
   // Cards render
   state.results.forEach( (item) => {
-    view.renderCard(item, state.favourites.isFav(item.id));
+    view.renderCard(item, state.favourites.isFav(item.id), state.settings.priceSet);
   });
 
   state.emitter.subscribe('event:render-listing', ()=>{
@@ -34,7 +34,7 @@ export default function (state) {
 
     // Cards render
     state.results.forEach( (item) => {
-      view.renderCard(item, state.favourites.isFav(item.id));
+      view.renderCard(item, state.favourites.isFav(item.id), state.settings.priceSet);
     });
 
   });

@@ -9,7 +9,7 @@ export default async function (state) {
   await favouriteCards.getFavs();
 
   // Render container and fav ccards
-  view.renderPage(favouriteCards.cards);
+  view.renderPage(favouriteCards.cards, state.settings.priceSet);
 
   // Function works with 'add to favs' icons
   const  addToFavListener = function () {
