@@ -7,7 +7,7 @@ export default function (state) {
 
   // Cards render
   state.results.forEach( (item) => {
-    view.renderCard(item);
+    view.renderCard(item, state.favourites.isFav(item.id));
   });
 
   state.emitter.subscribe('event:render-listing', ()=>{

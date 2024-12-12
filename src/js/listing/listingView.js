@@ -9,7 +9,7 @@ export function render () {
   document.querySelector('#app').insertAdjacentHTML('beforeend', markup);
 }
 
-export function renderCard(object) {
+export function renderCard(object, isFav) {
   const listingContainer = document.querySelector('#listingContainer');
 
   const markup = `<article class="col-md-4">
@@ -19,7 +19,11 @@ export function renderCard(object) {
                             <div class="card__title">
                                 ЖК ${object.complex_name}
                             </div>
-                            <div class="card__like">
+                            <div class="
+                                    card__like
+                                    ${isFav ? 'card__like--active' : ''}
+                                  "
+                            >
                                 <i class="fas fa-heart"></i>
                             </div>
                         </div>
@@ -36,7 +40,6 @@ export function renderCard(object) {
                                 </div>
                             </div>
 
-                            <!-- card__params params -->
                             <div class="card__params params">
                                 <div class="params__item">
                                     <div class="params__definition">
@@ -51,7 +54,7 @@ export function renderCard(object) {
                                     <div class="params__value">${object.square}</div>
                                 </div>
                             </div>
-                            <!-- //card__params params -->
+                  
                         </div>
                         <div class="card__footer">
                             <div class="card__art">${object.scu}</div>

@@ -8,7 +8,6 @@ export default async function (state) {
   // Render single card 
   view.render(state.singleItem.result, state.favourites.isFav(state.singleItem.id));
 
- 
   /* **********
   * Start event listeners
   ************ */
