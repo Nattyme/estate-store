@@ -24,7 +24,6 @@ function renderBid (bid) {
 
 export function renderBids(bids) {
   renderContainer();
-console.log(bids);
 
   bids.forEach( (item) => {
     renderBid(item);

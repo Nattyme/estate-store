@@ -1,6 +1,5 @@
 export default class Settings {
   constructor () {
-    this.pages = []
   }
 
   priceSet (number) {

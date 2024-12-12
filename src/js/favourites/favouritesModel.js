@@ -22,8 +22,6 @@ export default class Favourites {
   }
 
   toggleFav(id) {
-    console.log(this.isFav(id));
-    
     this.isFav(id) ? this.removeFav(id) : this.addFav(id);
   }
 

@@ -16,8 +16,21 @@ export default async function (state) {
     descPanel: document.querySelector('.object__desc'),
     buttonOrder: document.querySelector('.button-order'),
     buttonClose: document.querySelector('.modal__close'),
-    buttonFav: document.querySelector('#addToFavouriteBtn'),
     modalWrapper: document.querySelector('.modal-wrapper')
+  }
+
+  const displayMessage = function (response) {
+     // Case success
+     if( response.message === 'Bid Created') {
+      alert('Ваша заявка успешно получена');
+      view.hideModal();
+      view.clearInput();
+    } 
+    
+    // Case error
+    if (response.message === 'Bid Not Created') {
+      response.errors.forEach( item => alert(item));
+    }
   }
 
   // Click at overlay or buttons-close - close modal
@@ -33,17 +46,8 @@ export default async function (state) {
       await state.singleItem.submitForm(formData);
       const response = state.singleItem.response;
 
-      // Case success
-      if( response.message === 'Bid Created') {
-        alert('Ваша заявка успешно получена');
-        view.hideModal();
-        view.clearInput();
-      } 
-      
-      // Case error
-      if (response.message === 'Bid Not Created') {
-        response.errors.forEach( item => alert(item));
-      }
+      // Display error or success message
+      displayMessage(response);
     }
 
   });
@@ -53,11 +57,12 @@ export default async function (state) {
     if(e.target === elements.buttonOrder) view.showModal();
 
     // Add or remove form favs
-    if(e.target === elements.buttonFav) {  
+    if(e.target.closest('#addToFavouriteBtn')) {  
       state.favourites.toggleFav(state.singleItem.id);
       view.toggleFavouriteButton(state.favourites.isFav(state.singleItem.id));
     }
   
   });
+  
 
 }

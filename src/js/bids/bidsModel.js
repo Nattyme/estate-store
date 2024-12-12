@@ -11,8 +11,6 @@ export  default class Bids {
       this.bids = await data;
     } catch (error) {
       alert('Error with getting bids');
-      console.log(error);
-      
     }
  
   }

@@ -28,7 +28,7 @@ export default function (state) {
     view.renderCard(item, state.favourites.isFav(item.id), state.settings.priceSet);
   });
 
-  state.emitter.subscribe('event:render-listing', ()=>{
+  const renderListing = function () {
     // Clear cords container
     view.clearListingContainer();
 
@@ -37,17 +37,12 @@ export default function (state) {
       view.renderCard(item, state.favourites.isFav(item.id), state.settings.priceSet);
     });
 
-  });
+  };
+ 
 
-  state.emitter.subscribe('event:reset-listing', ()=> {
-    // Clear cords container
-    view.clearListingContainer();
+  state.emitter.subscribe('event:render-listing', renderListing);
+  state.emitter.subscribe('event:reset-listing', renderListing);
 
-    // Cards render
-    state.results.forEach( (item) => {
-      view.renderCard(item, state.favourites.isFav(item.id));
-    });
-  }); 
 
   // Start listen click at 'add to fav' icon
   addToFavListener();
