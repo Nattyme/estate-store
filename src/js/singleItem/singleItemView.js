@@ -1,4 +1,6 @@
-export function render (object) {
+export function render (object, isFav) {
+  console.log(isFav);
+  
   const appContainer = document.querySelector('#app');
   const markup = `
             <div class="container p-0 pt-5">
@@ -24,8 +26,16 @@ export function render (object) {
                             </div>
                             <div class="object__desc-art">${object.scu}</div>
 
-                            <button id="addToFavouriteBtn" class="button-favourite">
-                                <i class="fas fa-heart"></i> <span>В избранное</span>
+                            <button id="addToFavouriteBtn" 
+                              class="
+                                button-favourite
+                                ${isFav ? 'button-favourite--active' : ''}
+                              "
+                            >
+                              <i class="fas fa-heart"></i> 
+                              <span>
+                                ${isFav ? 'В избранном' : 'В избранное'}
+                              </span>
                             </button>
 
                         </div>
@@ -155,7 +165,7 @@ export function render (object) {
                         </div>`;
 
   appContainer.insertAdjacentHTML('beforeend', markup);
-  appContainer.insertAdjacentHTML('beforeend', markupModal); // model is hidden for the start
+  appContainer.insertAdjacentHTML('beforeend', markupModal); // modal is hidden for the start
 }
 
 export function showModal () {
@@ -192,4 +202,15 @@ function getElements() {
    phone: document.querySelector('#form-phone')
  }
 
+}
+
+export function toggleFavouriteButton(isFav) {
+  const btn = document.querySelector('#addToFavouriteBtn');
+  if(isFav) {
+    btn.classList.add('button-favourite--active');
+    btn.querySelector('span').textContent = 'В избранном';
+  } else {
+    btn.classList.remove('button-favourite--active');
+    btn.querySelector('span').textContent = 'В избранном';
+  }
 }

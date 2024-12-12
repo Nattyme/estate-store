@@ -1,16 +1,20 @@
 export default class Favourites {
   constructor() {
     this.favs = [];
+
     // Local storage 
+    this.readStorage ();
   }
 
   addFav(id) {
     this.favs.push(id);
+    this.saveData();
   }
 
   removeFav(id) {
     const index = this.favs.indexOf(id);
     this.favs.splice(index, 1);
+    this.saveData();
   }
 
   isFav(id) {
@@ -19,5 +23,14 @@ export default class Favourites {
 
   toggleFav(id) {
     this.isFav(id) ? this.removeFav(id) : this.addFav(id);
+  }
+
+  saveData () {
+    localStorage.setItem('favs', JSON.stringify(this.favs));
+  }
+
+  readStorage () {
+    const storage = JSON.parse( localStorage.getItem('favs'));
+    if (storage) this.favs = storage;
   }
 }

@@ -6,7 +6,7 @@ export default async function (state) {
   await state.singleItem.getItem();
 
   // Render single card 
-  view.render(state.singleItem.result);
+  view.render(state.singleItem.result, state.favourites.isFav(state.singleItem.id));
 
  
   /* **********
@@ -54,9 +54,9 @@ export default async function (state) {
     if(e.target === elements.buttonOrder) view.showModal();
 
     // Add or remove form favs
-    if(e.target === elements.buttonFav) {
-      console.log('clicked FAV');  
+    if(e.target === elements.buttonFav) {  
       state.favourites.toggleFav(state.singleItem.id);
+      view.toggleFavouriteButton(state.favourites.isFav(state.singleItem.id));
     }
   
   });
