@@ -1,7 +1,7 @@
 import * as view from './listingView';
 
 export default function (state) {
-   // Function works with 'add to favs' icons
+  // Function works with 'add to favs' icons
   const  addToFavListener = function () {
     Array.from( document.getElementsByClassName('card__like')).forEach( (item)=>{
       item.addEventListener('click', (e)=> {
@@ -26,8 +26,10 @@ export default function (state) {
   // Cards render
   state.results.forEach( (item) => {
     view.renderCard(item, state.favourites.isFav(item.id));
+    
+    // Start listen click at 'add to fav' icon
+    addToFavListener();
   });
-
 
   state.emitter.subscribe('event:render-listing', ()=>{
     // Clear cords container
@@ -56,8 +58,5 @@ export default function (state) {
 
   }); 
 
- 
 
-  
-  
 }

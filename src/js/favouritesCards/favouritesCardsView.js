@@ -1,5 +1,5 @@
 function renderContainer() {
-  const markup = `<div class="container p-0">
+  const markup = `<div class="container p-0 mb-5">
                       <div class="heading-1">Избранное</div>
                   </div>
 
@@ -74,4 +74,13 @@ function renderCard(object) {
                   </article>`;
 
   cardsContainer.insertAdjacentHTML('beforeend', markup);
+}
+
+export function toggleFavIcon (elemenyIcon, isFav) {
+  if (isFav) {
+    elemenyIcon.classList.add('card__like--active');
+  } else {
+    elemenyIcon.classList.remove('card__like--active');
+
+  }
 }
