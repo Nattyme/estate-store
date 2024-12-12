@@ -1,16 +1,29 @@
-export function render () {
-  const markup = `<div class="cards-wrapper">
-                    <div class="container p-0 pt-5">
+function renderContainer() {
+  const markup = `<div class="container p-0">
+                      <div class="heading-1">Избранное</div>
+                  </div>
 
-                      <div id="listingContainer" class="row"></div>
-        
+                  <div class="cards-wrapper">
+                    <div class="container p-0">
+                      <div class="row" id="cardsHolder">
+                      <!-- cards'll be here -->
+                      </div>
                     </div>
                   </div>`;
-  document.querySelector('#app').insertAdjacentHTML('beforeend', markup);
+
+  document.querySelector('#app').insertAdjacentHTML('afterbegin', markup);
 }
 
-export function renderCard(object, isFav) {
-  const listingContainer = document.querySelector('#listingContainer');
+export function renderPage (cards) {
+  renderContainer();
+
+  cards.forEach(card => {
+    renderCard(card);
+  });
+}
+
+function renderCard(object) {
+  const cardsContainer = document.querySelector('#cardsHolder');
 
   const markup = `<article class="col-md-4">
                             
@@ -19,11 +32,7 @@ export function renderCard(object, isFav) {
                             <div class="card__title">
                                 ЖК ${object.complex_name}
                             </div>
-                            <div class="
-                                    card__like
-                                    ${isFav ? 'card__like--active' : ''}
-                                  "
-                            >
+                            <div class="card__like card__like--active">
                                 <i class="fas fa-heart"></i>
                             </div>
                         </div>
@@ -64,20 +73,5 @@ export function renderCard(object, isFav) {
                     
                   </article>`;
 
-  listingContainer.insertAdjacentHTML('beforeend', markup);
-}
-
-export function clearListingContainer () {
-  const listingContainer = document.querySelector('#listingContainer');
-  listingContainer.innerHTML = '';
-
-}
-
-export function toggleFavIcon (elemenyIcon, isFav) {
-  if (isFav) {
-    elemenyIcon.classList.add('card__like--active');
-  } else {
-    elemenyIcon.classList.remove('card__like--active');
-
-  }
+  cardsContainer.insertAdjacentHTML('beforeend', markup);
 }

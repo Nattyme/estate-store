@@ -10,7 +10,5 @@ export default class FavouritesCards {
     const data = await result.json();
 
     this.cards = await data;
-    console.log( this.cards);
-    
   }
 }
