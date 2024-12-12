@@ -76,11 +76,11 @@ function renderCard(object) {
   cardsContainer.insertAdjacentHTML('beforeend', markup);
 }
 
-export function toggleFavIcon (elemenyIcon, isFav) {
+export function toggleFavIcon (elementIcon, isFav) {
   if (isFav) {
-    elemenyIcon.classList.add('card__like--active');
+    elementIcon.classList.add('card__like--active');
   } else {
-    elemenyIcon.classList.remove('card__like--active');
+    elementIcon.classList.remove('card__like--active');
 
   }
 }

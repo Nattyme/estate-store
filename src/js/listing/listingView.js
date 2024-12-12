@@ -11,6 +11,14 @@ export function render () {
 
 export function renderCard(object, isFav) {
   const listingContainer = document.querySelector('#listingContainer');
+  const priceFormatter = function (number) {
+    return number.toLocaleString('ru-RU', { 
+      style: 'currency', 
+      currency: 'RUB',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0 
+    });
+  }
 
   const markup = `<article class="col-md-4">
                             
@@ -33,7 +41,8 @@ export function renderCard(object, isFav) {
                         <div class="card__desc">
                             <div class="card__price">
                                 <div class="card__price-total">
-                                    ${object.price_total} ₽
+                                    ${priceFormatter(Number(object.price_total))}
+                                  
                                 </div>
                                 <div class="card__price-per-meter">
                                     ${object.price_sq_m} ₽/м2
@@ -73,11 +82,11 @@ export function clearListingContainer () {
 
 }
 
-export function toggleFavIcon (elemenyIcon, isFav) {
+export function toggleFavIcon (elementIcon, isFav) {
   if (isFav) {
-    elemenyIcon.classList.add('card__like--active');
+    elementIcon.classList.add('card__like--active');
   } else {
-    elemenyIcon.classList.remove('card__like--active');
+    elementIcon.classList.remove('card__like--active');
 
   }
 }

@@ -26,9 +26,6 @@ export default function (state) {
   // Cards render
   state.results.forEach( (item) => {
     view.renderCard(item, state.favourites.isFav(item.id));
-    
-    // Start listen click at 'add to fav' icon
-    addToFavListener();
   });
 
   state.emitter.subscribe('event:render-listing', ()=>{
@@ -40,8 +37,6 @@ export default function (state) {
       view.renderCard(item, state.favourites.isFav(item.id));
     });
 
-    // Start listen click at 'add to fav' icon
-    addToFavListener();
   });
 
   state.emitter.subscribe('event:reset-listing', ()=> {
@@ -52,11 +47,8 @@ export default function (state) {
     state.results.forEach( (item) => {
       view.renderCard(item, state.favourites.isFav(item.id));
     });
-
-    // Start listen click at 'add to fav' icon
-    addToFavListener();
-
   }); 
 
-
+  // Start listen click at 'add to fav' icon
+  addToFavListener();
 }
