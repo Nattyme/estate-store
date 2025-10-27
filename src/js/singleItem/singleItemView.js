@@ -42,8 +42,8 @@ export function render (object, isFav, priceSet) {
                        
                             <div class="params">
                                 <div class="params__item">
-                                    <div class="params__definition">${object.building}</div>
-                                    <div class="params__value">3</div>
+                                    <div class="params__definition">Корпус</div>
+                                    <div class="params__value">${object.building}</div>
                                 </div>
                                 <div class="params__item">
                                     <div class="params__definition">Этаж</div>
@@ -91,7 +91,7 @@ export function render (object, isFav, priceSet) {
             <div class="container p-0">
                 <a href="/" class="back-to-results"> ← Вернуться к результатам поиска </a>
             </div>`;
-  
+  console.log(object);
   const markupModal = `
                         <div class="modal-wrapper none">
                             <div class="modal">
@@ -100,8 +100,8 @@ export function render (object, isFav, priceSet) {
                                         Заявка на бронирование
                                     </div>
                                     <div class="modal__details">
-                                        Квартира <span>96</span> в Первом квартале Дом 5
-                                        <div class="modal__details-art">ГЕН-112-42</div>
+                                        Квартира <span>${object.flat_number}</span> в ЖК ${object.complex_name} Дом ${object.building}
+                                        <div class="modal__details-art">${object.scu}</div>
                                     </div>
                                 </div>
 

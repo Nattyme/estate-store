@@ -17,6 +17,9 @@ function renderContainer() {
 export function renderPage (cards, priceSet) {
   renderContainer();
 
+  // Проверим, что карточки получены
+  if(!cards) return;
+
   cards.forEach(card => {
     renderCard(card, priceSet);
   });

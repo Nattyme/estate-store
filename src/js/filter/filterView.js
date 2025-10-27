@@ -7,6 +7,14 @@ const elements = {
   filterButtons: document.getElementsByClassName('filter__show')
 }
 
+const displayButtonText = function (number) {
+  if (number > 0) {
+    return `Показать ${number} объектов`;
+  } else {
+    return 'Объекты не найдены. Измените условия поиска.';
+  }
+}
+
 export function render (params) {
   let complexNames = '';
   params.complexNames.forEach((name) => {
@@ -110,18 +118,10 @@ export function render (params) {
 
 export function changeButtonText(number) {
   const buttonSubmit = elements.filterButtons[0];
-
-  let message;
-
-  if (number > 0) {
-    message = `Показать ${number} объектов`;
-  } else {
-    message = 'Объекты не найдены. Измените условия поиска.';
-  }
+  const message = displayButtonText(number);
 
   buttonSubmit.innerText = message;
-
-
+  
   // Disable btn if result is empty
   buttonSubmit.disabled = number === 0 ? true : false;
 }
