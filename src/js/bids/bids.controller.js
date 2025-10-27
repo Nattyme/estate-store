@@ -8,7 +8,7 @@ export default async function (state) {
 
   // Get bids from the server
   await state.bids.getBids();
-  
-  // Render bids at the page
+
   view.renderBids(state.bids.bids);
+    
 }
